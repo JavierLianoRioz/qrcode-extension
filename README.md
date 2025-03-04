@@ -1,13 +1,13 @@
-# Fox Grape QR Code Extension 🦊🔮
+# Fox QR Code Extension 🦊
 
-Generador de códigos QR con tema púrpura/uva para Chrome. Esta extensión permite crear y descargar códigos QR de manera rápida y sencilla con un toque distintivo de Fox.
+Generador de códigos QR para Chrome con un estilo distintivo. Esta extensión permite crear y descargar códigos QR de manera rápida y sencilla con el toque único de Fox.
 
 ## Características
 
 - Genera códigos QR con capacidad máxima de 500 caracteres
 - Descarga los códigos QR generados
 - Menú contextual para generar QR de enlaces
-- Interfaz minimalista con tema púrpura
+- Interfaz minimalista con estilo propio
 
 ## Tecnologías
 
