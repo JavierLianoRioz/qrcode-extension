@@ -10,18 +10,18 @@
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
     <script src="../lib/qrcode.js" defer></script>
-    <script src="index.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <main>
-      <section class="card" id="extension">
-        <section class="card-body">
+  <body class="h-full">
+    <main class="h-full">
+      <section class="card h-full" id="extension">
+        <section class="card-body h-full">
           <a href="#" id="a-download">
             <div class="p-centered" id="qrcode"></div>
           </a>
           <form class="form-group">
             <div style="display: flex; align-items: center;">
-              <textarea class="form-input" id="qr-input" rows="2" maxlength=500></textarea>
+              <input type="text" class="form-input" id="qr-input" maxlength=500 placeholder="Paste link here">
               <button type="button" class="btn btn-sm btn-primary" id="qr-button" style="margin-left: 10px; width: 40px; height: 40px;">🧠</button>
             </div>
           </form>
