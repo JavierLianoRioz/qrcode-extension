@@ -21,12 +21,14 @@
           </a>
           <form class="form-group">
             <div style="display: flex; align-items: center;">
-              <textarea class="form-input" id="qr-input" rows="2" maxlength=500 oninput="this.style.height = '';this.style.height = this.scrollHeight + 'px'"></textarea>
+              <textarea class="form-input" id="qr-input" rows="2" maxlength=500></textarea>
               <button type="button" class="btn btn-sm btn-primary" id="qr-button" style="margin-left: 10px; width: 40px; height: 40px;">🧠</button>
             </div>
           </form>
         </section>
       </section>
     </main>
+    <script src="../lib/qrcode.js" defer></script>
+    <script src="index.js" defer></script>
   </body>
 </html>

@@ -36,3 +36,8 @@ qrButton.addEventListener('click', () => {
   });
   downloadLink.download = 'qrcode';
 });
+
+qrData.addEventListener('input', function() {
+  this.style.height = '';
+  this.style.height = this.scrollHeight + 'px';
+});
