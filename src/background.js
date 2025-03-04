@@ -10,7 +10,7 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "createQRCode") {
     chrome.tabs.create({
-      url: `popup.html?link=${encodeURIComponent(info.linkUrl)}`
+      url: `src/popup.html?link=${encodeURIComponent(info.linkUrl)}`
     });
   }
 });

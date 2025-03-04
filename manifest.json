@@ -12,7 +12,7 @@
     "default_icon": "images/icon.png",
     "default_popup": "src/popup.html"
   },
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "contextMenus"],
   "background": {
     "service_worker": "src/background.js"
   },
