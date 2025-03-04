@@ -16,14 +16,16 @@ const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, mil
 
 // Generar QR automáticamente con la URL de la página actual
 window.addEventListener('load', () => {
-  const currentUrl = window.location.href;
-  qrcode.makeCode(currentUrl);
-  qrData.value = currentUrl;
-  sleep(100).then(() => {
-    const src = document.querySelector('img').getAttribute('src');
-    document.getElementById('a-download').href = `${src}`;
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const currentUrl = tabs[0].url;
+    qrcode.makeCode(currentUrl);
+    qrData.value = currentUrl;
+    sleep(100).then(() => {
+      const src = document.querySelector('img').getAttribute('src');
+      document.getElementById('a-download').href = `${src}`;
+    });
+    downloadLink.download = 'qrcode';
   });
-  downloadLink.download = 'qrcode';
 });
 
 qrButton.addEventListener('click', () => {

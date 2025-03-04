@@ -14,18 +14,19 @@
   </head>
   <body>
     <main>
-      <div class="card" id="extension">
-        <div class="card-body">
-          <div class="form-group">
-            <span class="label label-secondary"><b>Enter your data</b></span>
-            <textarea class="form-input" id="qr-input" rows="2" maxlength=500></textarea>
-            <button class="btn btn-lg btn-primary p-centered" id="qr-button"><strong>Generate</strong> 🔳</button>
-          </div>
-          <div class="p-centered" id="qrcode"></div>
-          <a href="#" id="a-download" class="p-centered text-bold text-large">⬇️Download Code</a>
-          <a href="read.html" id="a-read" class="p-centered text-bold text-large">🔎Read Code</a>
-        </div>
-      </div>
+      <section class="card" id="extension">
+        <section class="card-body">
+          <a href="#" id="a-download">
+            <div class="p-centered" id="qrcode"></div>
+          </a>
+          <form class="form-group">
+            <div style="display: flex; align-items: center;">
+              <textarea class="form-input" id="qr-input" rows="2" maxlength=500 oninput="this.style.height = '';this.style.height = this.scrollHeight + 'px'"></textarea>
+              <button type="button" class="btn btn-sm btn-primary" id="qr-button" style="margin-left: 10px; width: 40px; height: 40px;">🧠</button>
+            </div>
+          </form>
+        </section>
+      </section>
     </main>
   </body>
 </html>

@@ -1,52 +1,52 @@
-#extension   { 
+#extension {
     background-color: #f8f8f8;
     width: 400px;
-    height: 600px;
+    height: 400px;
 }
 
-#qr-button{ 
+#qr-button {
     margin-top: 10px;
     width: 50%;
 }
 
-#qrcode { 
+#qrcode {
     margin-top: 30px;
     width: 82%;
     margin: 0 auto;
 }
 
-#qr-input, #file { 
+#qr-input, #file {
     margin-top: 5px;
     background-color: #f8f8f8;
     resize: none;
 }
 
-#a-download, #a-read, #a-source { 
-  font-size: 110%;
-  text-align: center;
-  color: #5755D9;
+a {
+    font-size: 110%;
+    text-align: center;
+    color: #5755D9;
 }
 
-#a-return { 
-  font-size: 120%;
+#a-return {
+    font-size: 120%;
 }
 
-#content { 
+#content {
     word-wrap: break-word;
 }
 
-h2 { 
+h1 {
     text-align: center;
 }
 
-span, p { 
+label, p {
     font-size: 113%;
 }
 
-#qr-data { 
- margin-top: 15px;   
+#qr-data {
+    margin-top: 15px;
 }
 
-input[type=file] { 
-  color: #5755D9;     
+input[type=file] {
+    color: #5755D9;
 }
