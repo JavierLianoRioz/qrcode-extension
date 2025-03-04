@@ -4,6 +4,7 @@ const qrButton = document.getElementById('qr-button');
 const pasteButton = document.getElementById('paste-button');
 const domainDisplay = document.getElementById('domain-display');
 const downloadLink = document.getElementById('a-download');
+const formGroup = document.querySelector('.form-group');
 
 const qrcode = new QRCode(document.getElementById('qrcode'), {
   text: '',
@@ -45,6 +46,11 @@ window.addEventListener('load', () => {
   const link = urlParams.get('link');
 
   if (link) {
+    // Ocultar el formulario y los botones cuando se abre desde el menú contextual
+    if (formGroup) {
+      formGroup.style.display = 'none';
+    }
+    
     qrcode.makeCode(link);
     qrData.value = link;
     domainDisplay.value = new URL(link).hostname;

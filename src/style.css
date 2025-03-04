@@ -8,8 +8,9 @@
     --muted: #6e738d;
 }
 
-body {
-    background-color: var(--background);
+/* Aumentamos la especificidad del selector body */
+html body {
+    background-color: var(--background) !important;
     color: var(--foreground);
     font-family: 'Arial', sans-serif;
     margin: 0;
