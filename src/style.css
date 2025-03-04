@@ -12,33 +12,67 @@ body {
     background-color: var(--background);
     color: var(--foreground);
     font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 #extension {
     background-color: var(--background);
-    width: 400px;
+    width: 360px; /* Aumentamos el ancho para tener más espacio a los lados */
     height: auto;
     border: 1px solid var(--muted);
-    padding: 16px;
+    padding: 20px; /* Aumentamos el padding para tener más espacio interno */
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
-#qr-button {
-    margin-top: 10px;
-    width: 50%;
+.qr-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+    margin-left: 10px;
+    flex-shrink: 0; /* Evita que los botones se reduzcan */
+}
+
+#qr-button, #paste-button {
+    width: 40px;
+    height: 40px;
     background-color: var(--primary);
     color: var(--foreground);
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
 }
 
-#qr-button:hover {
+#qr-button:hover, #paste-button:hover {
     background-color: var(--highlight);
 }
 
 #qrcode {
-    margin: 30px auto;
-    width: 82%;
+    margin: 20px auto;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #qr-input, #file {
@@ -49,6 +83,9 @@ body {
     resize: none;
     border-radius: 4px;
     padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
 }
 
 a {
@@ -56,6 +93,8 @@ a {
     text-align: center;
     color: var(--accent);
     text-decoration: none;
+    display: block;
+    width: 100%;
 }
 
 a:hover {
@@ -86,4 +125,14 @@ label, p {
 
 input[type=file] {
     color: var(--foreground);
+}
+
+.form-group {
+    width: 100%;
+    margin-top: 10px;
+    height: 50px;
+}
+
+.card-body {
+    padding: 0;
 }

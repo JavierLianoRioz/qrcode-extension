@@ -16,6 +16,29 @@ const qrcode = new QRCode(document.getElementById('qrcode'), {
 
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
+// Función para ajustar el tamaño del popup
+const adjustPopupSize = () => {
+  // Solo ajustar si estamos en una ventana popup (no en el popup de la extensión)
+  if (window.location.search.includes('link=')) {
+    // Dar tiempo para que el contenido se renderice completamente
+    sleep(300).then(() => {
+      // Obtener el elemento principal que contiene todo el contenido
+      const extensionElement = document.getElementById('extension');
+      
+      // Obtener el tamaño real del contenido
+      const width = extensionElement.offsetWidth;
+      const height = extensionElement.offsetHeight;
+      
+      // Comunicar con el background script para ajustar el tamaño
+      chrome.runtime.sendMessage({
+        action: 'adjustSize',
+        width: width + 20, // Margen adicional para evitar barras de desplazamiento
+        height: height + 40 // Aumentamos el margen inferior para más espacio
+      });
+    });
+  }
+};
+
 // Generar QR automáticamente con la URL de la página actual o el enlace del menú contextual
 window.addEventListener('load', () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -28,6 +51,7 @@ window.addEventListener('load', () => {
     sleep(100).then(() => {
       const src = document.querySelector('img').getAttribute('src');
       document.getElementById('a-download').href = `${src}`;
+      adjustPopupSize();
     });
     downloadLink.download = 'qrcode';
   } else {
@@ -51,6 +75,7 @@ qrButton.addEventListener('click', () => {
   sleep(100).then(() => {
     const src = document.querySelector('img').getAttribute('src');
     document.getElementById('a-download').href = `${src}`;
+    adjustPopupSize();
   });
   downloadLink.download = 'qrcode';
 });

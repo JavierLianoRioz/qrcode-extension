@@ -12,23 +12,28 @@
     <script src="../lib/qrcode.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="h-full">
-    <main class="h-full">
-      <section class="card h-full" id="extension">
-        <section class="card-body h-full">
-          <a href="#" id="a-download">
-            <div class="p-centered" id="qrcode"></div>
-          </a>
+  <body>
+    <main>
+      <section class="card" id="extension">
+        <section class="card-body">
+          <div class="qr-container">
+            <a href="#" id="a-download">
+              <div id="qrcode"></div>
+            </a>
+          </div>
+          <input type="text" class="form-input" id="domain-display" readonly style="display: none;">
           <form class="form-group">
-            <div style="display: flex; align-items: center;">
+            <div class="input-container">
               <input type="text" class="form-input" id="qr-input" maxlength=500 placeholder="Paste link here">
-              <button type="button" class="btn btn-sm btn-primary" id="qr-button" style="margin-left: 10px; width: 40px; height: 40px;">🧠</button>
+              <div class="button-container">
+                <button type="button" class="btn btn-primary" id="qr-button">🧠</button>
+                <button type="button" class="btn" id="paste-button">📋</button>
+              </div>
             </div>
           </form>
         </section>
       </section>
     </main>
-    <script src="../lib/qrcode.js" defer></script>
     <script src="index.js" defer></script>
   </body>
 </html>
