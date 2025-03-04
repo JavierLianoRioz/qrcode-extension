@@ -17,6 +17,61 @@ const qrcode = new QRCode(document.getElementById('qrcode'), {
 
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
+// Función para generar un nombre de archivo basado en la URL
+const generateFilenameFromUrl = (url) => {
+  try {
+    const urlObj = new URL(url);
+    let filename = urlObj.hostname.replace('www.', '');
+    
+    // Añadir la ruta (sin la barra inicial)
+    if (urlObj.pathname && urlObj.pathname !== '/') {
+      // Eliminar la barra inicial y reemplazar barras por guiones
+      const path = urlObj.pathname.substring(1).replace(/\//g, '-');
+      // Eliminar extensiones de archivo comunes
+      const cleanPath = path.replace(/\.(html|php|asp|jsp)$/, '');
+      filename += '-' + cleanPath;
+    }
+    
+    // Añadir parámetros de consulta importantes (limitados para evitar nombres muy largos)
+    if (urlObj.searchParams.toString()) {
+      const params = [];
+      // Obtener solo los primeros 2 parámetros para evitar nombres muy largos
+      let count = 0;
+      for (const [key, value] of urlObj.searchParams.entries()) {
+        if (count < 2) {
+          // Solo usar el nombre del parámetro si es corto
+          if (key.length < 10) {
+            params.push(key);
+          }
+          count++;
+        } else {
+          break;
+        }
+      }
+      
+      if (params.length > 0) {
+        filename += '-' + params.join('-');
+      }
+    }
+    
+    // Reemplazar caracteres no válidos para nombres de archivo
+    filename = filename.replace(/[^a-zA-Z0-9\-_]/g, '-');
+    
+    // Limitar la longitud del nombre de archivo (máximo 50 caracteres)
+    if (filename.length > 50) {
+      filename = filename.substring(0, 50);
+    }
+    
+    // Eliminar guiones duplicados y guiones al final
+    filename = filename.replace(/\-+/g, '-').replace(/\-$/, '');
+    
+    return filename || 'qrcode';
+  } catch (e) {
+    // Si hay un error al parsear la URL, usar un nombre genérico
+    return 'qrcode';
+  }
+};
+
 // Función para ajustar el tamaño del popup
 const adjustPopupSize = () => {
   // Solo ajustar si estamos en una ventana popup (no en el popup de la extensión)
@@ -59,7 +114,7 @@ window.addEventListener('load', () => {
       document.getElementById('a-download').href = `${src}`;
       adjustPopupSize();
     });
-    downloadLink.download = 'qrcode';
+    downloadLink.download = generateFilenameFromUrl(link);
   } else {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const currentUrl = tabs[0].url;
@@ -70,7 +125,7 @@ window.addEventListener('load', () => {
         const src = document.querySelector('img').getAttribute('src');
         document.getElementById('a-download').href = `${src}`;
       });
-      downloadLink.download = 'qrcode';
+      downloadLink.download = generateFilenameFromUrl(currentUrl);
     });
   }
 });
@@ -83,7 +138,7 @@ qrButton.addEventListener('click', () => {
     document.getElementById('a-download').href = `${src}`;
     adjustPopupSize();
   });
-  downloadLink.download = 'qrcode';
+  downloadLink.download = generateFilenameFromUrl(qrData.value);
 });
 
 pasteButton.addEventListener('click', async () => {
